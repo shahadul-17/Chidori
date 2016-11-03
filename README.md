@@ -2,7 +2,7 @@
 A text editor written in pure Java which includes all the functionalities for everyday use.
 
 # Requirements
-1) Java SE Runtime Environment (JRE) 6 or higher
+1) Java SE Runtime Environment (JRE) 6 or newer.
 
 # Improvements
 1) Turned this application into a single instance application. (NEW)  
