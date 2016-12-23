@@ -1,9 +1,11 @@
 package chidori;
 
 import java.awt.Color;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.PrintWriter;
-import java.util.Scanner;
+import java.io.FileReader;
+import java.io.FileWriter;
 
 import javax.swing.UIManager;
 
@@ -53,27 +55,33 @@ public class Main {
 	}
 	
 	public static void write(String text, File file) throws Exception {
-		PrintWriter printWriter = new PrintWriter(file);
-		printWriter.print(text);
-		printWriter.flush();
-		printWriter.close();
+		BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file));
+		bufferedWriter.write(text);
+		bufferedWriter.flush();
+		bufferedWriter.close();
 	}
 	
 	public static String read(File file) throws Exception {
-		String text = "";
-		Scanner scanner = new Scanner(file);
+		int lines = 0;
 		
-		while (scanner.hasNextLine()) {
-			text += scanner.nextLine();
-			
-			if (scanner.hasNextLine()) {
-				text += "\n";
+		String text;
+		StringBuilder stringBuilder = new StringBuilder();
+		BufferedReader bufferedReader = new BufferedReader(new FileReader(file));
+		
+		while ((text = bufferedReader.readLine()) != null) {
+			if (lines == 0) {
+				lines++;
 			}
+			else {
+				stringBuilder.append("\n");
+			}
+			
+			stringBuilder.append(text);
 		}
 		
-		scanner.close();
+		bufferedReader.close();
 		
-		return text;
+		return stringBuilder.toString();
 	}
 	
 }
