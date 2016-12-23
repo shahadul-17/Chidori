@@ -357,15 +357,20 @@ public class TabBody extends JPanel implements UndoableEditListener, ActionListe
 		if (lastLineCount != lineCount) {
 			if (lastLineCount < lineCount) {
 				for (int i=lastLineCount; i<lineCount; i++) {
-					lastLabelLineNumbersText = lastLabelLineNumbersText.substring(0, lastLabelLineNumbersText.lastIndexOf("</html>")) + "<br>" + (i+1) + "</html>";
+					stringBuilder.delete(stringBuilder.lastIndexOf("</html>"), stringBuilder.length());
+					stringBuilder.append("<br>");
+					stringBuilder.append(i + 1);
+					stringBuilder.append("</html>");
 				}
 			}
 			else if (lastLineCount > lineCount) {
 				for (int i=0; i<lastLineCount - lineCount; i++) {
-					lastLabelLineNumbersText = lastLabelLineNumbersText.substring(0, lastLabelLineNumbersText.lastIndexOf("<br>")) + "</html>";
+					stringBuilder.delete(stringBuilder.lastIndexOf("<br>"), stringBuilder.length());
+					stringBuilder.append("</html>");
 				}
 			}
 			
+			lastLabelLineNumbersText = stringBuilder.toString();
 			labelLineNumbers.setText(lastLabelLineNumbersText);
 			lastLineCount = lineCount;
 		}
