@@ -49,7 +49,6 @@ public class TabBody extends JPanel implements UndoableEditListener, ActionListe
 	
 	public boolean saved = true;
 	
-	// private String lastLabelLineNumbersText = "<html>1</html>";
 	public String lastText = "";
 	private static final String[] fontNames = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 	private StringBuilder stringBuilder = new StringBuilder("<html>1</html>");
