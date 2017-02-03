@@ -49,9 +49,10 @@ public class TabBody extends JPanel implements UndoableEditListener, ActionListe
 	
 	public boolean saved = true;
 	
-	private String lastLabelLineNumbersText = "<html>1</html>";
+	// private String lastLabelLineNumbersText = "<html>1</html>";
 	public String lastText = "";
 	private static final String[] fontNames = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
+	private StringBuilder stringBuilder = new StringBuilder("<html>1</html>");
 	private static final Font font = new Font("Segoe UI", Font.PLAIN, 13);
 	
 	private FontSettings fontSettings = new FontSettings();
@@ -288,7 +289,7 @@ public class TabBody extends JPanel implements UndoableEditListener, ActionListe
 		panelLineNumbers.setBorder(new EmptyBorder(0, 5, 0, 5));
 		setLineNumbersVisible(Frame.settings.lineNumbersVisible);
 		
-		labelLineNumbers = new JLabel(lastLabelLineNumbersText);
+		labelLineNumbers = new JLabel(stringBuilder.toString());
 		labelLineNumbers.setForeground(Color.WHITE);
 		labelLineNumbers.setFont(font);
 		labelLineNumbers.setVerticalAlignment(SwingConstants.TOP);
@@ -370,8 +371,7 @@ public class TabBody extends JPanel implements UndoableEditListener, ActionListe
 				}
 			}
 			
-			lastLabelLineNumbersText = stringBuilder.toString();
-			labelLineNumbers.setText(lastLabelLineNumbersText);
+			labelLineNumbers.setText(stringBuilder.toString());
 			lastLineCount = lineCount;
 		}
 	}
